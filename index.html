@@ -575,6 +575,9 @@ function enterApp(){
   renderOffers(); renderHome(); show("home");
   loadMine();
   buildDays(); renderSvcChips();
+  /* atajos de la app instalada (mantener presionado el ícono): ?ir=reservar / ?ir=citas */
+  const ir=new URLSearchParams(location.search).get("ir");
+  if(ir==="reservar") show("book"); else if(ir==="citas") show("citas");
 }
 
 /* ---- inicio ---- */
