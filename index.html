@@ -431,11 +431,25 @@ async function slotsFor(calId, iso, userId){
   return slots;
 }
 
-/* llamadas al Apps Script (el token de GHL vive allá, nunca aquí) */
-async function gas(params){
-  const r=await fetch(LOOKUP+"?"+new URLSearchParams(params).toString());
-  return r.json();
+/* llamadas al Apps Script (el token de GHL vive allá, nunca aquí).
+   Google devuelve HTML de error de forma intermitente → reintentamos las LECTURAS.
+   ⚠️ action=book NUNCA se reintenta: la cita puede haberse creado aunque la
+   respuesta llegue rota (lección aprendida en el tablero — citas dobles). */
+async function gas(params, retries=2){
+  let last=null;
+  for(let i=0;i<=retries;i++){
+    if(i) await new Promise(z=>setTimeout(z,1200+i*900));
+    try{
+      const r=await fetch(LOOKUP+"?"+new URLSearchParams(params).toString());
+      const t=await r.text();
+      if(t.trim().startsWith("{")) return JSON.parse(t);
+      last=new Error("respuesta no JSON");
+    }catch(e){ last=e; }
+  }
+  throw last||new Error("sin conexión");
 }
+/* calentar el Apps Script al abrir (el primer arranque tarda 1-3 s) */
+fetch(LOOKUP+"?q=").catch(()=>{});
 
 /* ================== identificación por teléfono ================== */
 const LS_KEY="tn_clienta";
@@ -456,8 +470,9 @@ $("loginForm").addEventListener("submit", async e=>{
       $("loginForm").hidden=true; $("regForm").hidden=false;
       $("regForm").dataset.ph=digits; $("rgFn").focus();
     }
-  }catch(err){ msg.textContent="No pudimos conectar. Revisa tu internet e intenta otra vez."; }
-  $("loginGo").disabled=false; msg.textContent="";
+    msg.textContent="";
+  }catch(err){ msg.textContent="No pudimos conectar. Espera unos segundos e intenta otra vez."; }
+  $("loginGo").disabled=false;
 });
 
 $("regBack").addEventListener("click",()=>{ $("regForm").hidden=true; $("loginForm").hidden=false; $("phin").focus(); });
@@ -783,7 +798,7 @@ async function doBook(){
   $("bbGo").disabled=true; $("bbGo").textContent="Reservando…";
   try{
     const j=await gas({action:"book", calId:state.services[0].id, userId:uid,
-      contactId:state.clienta.id, start, end, title:svcTitle()});
+      contactId:state.clienta.id, start, end, title:svcTitle()}, 0);   // 0 reintentos: jamás arriesgar cita doble
     if(j && j.ok){
       hideBookbar();
       $("doneTxt").innerHTML=`<strong>${esc(svcTitle())}</strong><br>
@@ -798,8 +813,10 @@ async function doBook(){
       toast((j&&j.error)?`No se pudo: ${j.error}`:"No se pudo crear la cita. Intenta otra vez.");
     }
   }catch(err){
+    /* la respuesta llegó rota, pero la cita PUDO haberse creado — que revise antes de repetir */
     $("bbGo").disabled=false; $("bbGo").textContent="Confirmar cita";
-    toast("No pudimos conectar. Revisa tu internet e intenta otra vez.");
+    toast("La conexión se enredó. Mira en «Mis citas» si tu cita quedó creada antes de intentar de nuevo.");
+    loadHistorial();
   }
 }
 
