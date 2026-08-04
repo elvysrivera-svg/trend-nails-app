@@ -1,6 +1,6 @@
 /* Service worker de la app Trend Nails — cachea el "cascarón" para que abra
    al instante como app instalada; los datos (huecos, citas) siempre van en vivo. */
-const CACHE = 'tn-app-v1';
+const CACHE = 'tn-app-v2';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', e => {

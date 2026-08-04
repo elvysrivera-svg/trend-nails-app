@@ -220,10 +220,14 @@
   <form id="loginForm" autocomplete="off">
     <label class="lbl" for="phin">Tu número de teléfono</label>
     <input id="phin" inputmode="tel" placeholder="787 555 1234" maxlength="14" autocomplete="tel">
+    <div id="nmRow" hidden>
+      <label class="lbl" for="nmin">Tu nombre</label>
+      <input id="nmin" placeholder="Como te conocemos en el salón" autocomplete="given-name">
+    </div>
     <div class="msg" id="loginMsg"></div>
     <button class="btn" id="loginGo" type="submit" style="margin-top:8px">Entrar</button>
     <p class="muted" style="text-align:center; margin-top:14px">
-      Sin contraseñas: con tu número te reconocemos.<br>Solo lo usamos para encontrar tu ficha en el salón.
+      Sin contraseñas: con tu número y tu nombre te reconocemos.<br>Solo los usamos para encontrar tu ficha en el salón.
     </p>
   </form>
 
@@ -351,7 +355,11 @@ const DATA = {"staff":{"BQsJfxc8p7gXwVbXN996":"Rosemarie","3L3JPYqRxqqhMKJMnlDP"
 const PRICE={"1x6JRye2SFhLFoOAa87j":38,"22rzDXrEGL04Nkcof6Ia":75,"3jV9KtHYF25GsYqjZ5il":5,"4VT3qJkcujmIjYhqMWpU":15,"6vwMRZmxKYCBKviNyZep":75,"7tuGa7ycIYAp4tkRScjq":15,"7zeNjsutWO7bwiN10qwn":29,"8Dpm5uidS3s3b9WKEp2g":55,"8X2uRNOG4VCBsWgVwdBy":10,"9NrzbWzFWcLi5aoPIoJ5":25,"ARFI4hy7jZp1PVOeBwGT":75,"AuODJ11avkPJ7ls9tVic":60,"Bp2loHDTJk54PLL3tuYA":60,"CBZW9ulf4PCajsdLBPeR":50,"CZpZF1TjztJIf7p9ZkXN":20,"CxIvpmCa1vHvCiBhRNxQ":30,"D92UuxcnIIIiWQkboc8n":35,"EezPB3sITJuJSzrRYoW9":3,"Ez5uHFB94nW8Y97m5mc1":40,"FOe7WXIxIJz6WURq8X73":75,"GtuYTWr3EAWSJpm9FSe7":55,"Gx3i4M1pv69zqBpi03N1":65,"Hx1Zoy1sawYoo5SZMysC":10,"Kw76D0PFGGx4vO0IBY5B":50,"LADpMPGYHsRHlZlUca1v":60,"LeBl4UWcZ0B5jm0xnklM":70,"N0xlx7HF1swl6xG7Z6EI":65,"RFReaX7pmFEbZyC94zqY":50,"RV1uhwh4E0KHqkdG7AZl":70,"Sxv2mlMxsfWCwyigN1SB":65,"ToQbIYacEvAQgWgKGrKe":65,"WTkToNpniEBxpfQvkFSl":50,"WkSvlK7a52WGdejjwHy0":65,"YPqpcCo9nEPnwCHf4PG5":4,"aBNT8juNjHCiWNyeP77c":25,"adP4ePXrCRnUpJEF75yN":45,"aoEm0pl0DZVHJRu5yh8s":50,"avtlL5MRbaddOnvKrhAQ":50,"beBgKZovv7Ff64cNySiw":55,"bxQ82vpM4AnSV1LHLYVj":55,"cD4dawqBzxW4QbrMdkNX":85,"dNLv41IF9boLAksKczIP":15,"dkaIGgCvndiYkh9YQhAn":75,"eGe9PYICNx0cGoHcFmnH":45,"egdNu5KMi6vBCQ6kgcb4":35,"fbVJ7kIyGm8xxrCIGAie":40,"g36RaezJv7mpr25eCRpU":10,"gPMjdoKgYxBfeiWwcLzG":15,"gUqhOrD1oRxDyBILQFCf":30,"hnpIXeiI3sSkalYU2XuN":10,"iFTIlSN50BZ3Fu840Eyh":60,"icjh1tVET66Z01537Wuo":5,"jOVGwRWT4yWWNKY38nPX":60,"kAeKnqoJrT5gIQWsOM2s":10,"lkL37TRj1Kl1JgFuEALH":15,"mHR0N7KD6F0AERAPq6p9":25,"mRJvYqrjm2ua43v5rUFq":3,"n9mew9JrgjOiGgTLTIQj":50,"nPPZX2YnjM5NvNb8vCjx":45,"pBFwHIArqgsyaaXuqy83":60,"pwPUQqHl0ZUgasIkwURV":45,"qCcAONbuDombNG0Zxp1O":15,"qEhkAcZFgWoJQ9FAemJW":10,"qMbHXWozStOI9d8HGdlA":8,"sRwJjdMQ1YsvkERKMAp8":55,"wu9pvYRkckJDgmCy4lqy":55,"xicaGPKmYL6fcxfuF5bw":45,"yXEl9MSGuUE3CBJa4osZ":20};
 const MENU = "https://link.eraconsultingpr.com/widget/service-menus/trend-nails-salon?lang=es";
 const TZ = "America/Puerto_Rico", OFFSET = "-04:00", DAYS_AHEAD = 14;
-const LOOKUP = "https://script.google.com/macros/s/AKfycbyMlXSef1PKEIapZwk4O5rYV0uAYDkVImeDLTGJgEk3lb0mlpPmySy00S9aSScZXR3oKw/exec";
+/* Backend SEGURO de clientas (reserva-apps-script.gs — proyecto de Apps Script APARTE del
+   tablero: identifica por teléfono + nombre, llave firmada de 12 h y solo deja tocar SUS citas).
+   ⚠️ Cuando Elvys lo publique (PASOS-RESERVAS-CLIENTAS.md), pegar aquí la URL /exec. */
+const API = "";
+const READY = API.length > 0;
 
 /* Ofertas destacadas (calendarios OFERTA reales de GHL) */
 const OFFERS=[
@@ -390,8 +398,8 @@ const svcById=id=>DATA.services.find(s=>s.id===id);
 
 /* ================== estado ================== */
 const state={
-  clienta:null,          // {id,fn,ln,ph,em}
-  historial:undefined,   // undefined=cargando · null=backend sin actualizar · []=lista
+  clienta:null,          // {id,fn,ln,ph,em,tok}
+  mine:undefined,        // undefined=cargando · null=sin datos · {citas,visitas,usualCal,usualTec}
   services:[], tech:null, date:null, timesMap:null, chosenTime:null,
 };
 
@@ -431,16 +439,16 @@ async function slotsFor(calId, iso, userId){
   return slots;
 }
 
-/* llamadas al Apps Script (el token de GHL vive allá, nunca aquí).
+/* llamadas al backend (el token de GHL vive allá, nunca aquí).
    Google devuelve HTML de error de forma intermitente → reintentamos las LECTURAS.
-   ⚠️ action=book NUNCA se reintenta: la cita puede haberse creado aunque la
+   ⚠️ action=book NUNCA se reintenta a ciegas: la cita puede haberse creado aunque la
    respuesta llegue rota (lección aprendida en el tablero — citas dobles). */
-async function gas(params, retries=2){
+async function api(params, retries=2){
   let last=null;
   for(let i=0;i<=retries;i++){
     if(i) await new Promise(z=>setTimeout(z,1200+i*900));
     try{
-      const r=await fetch(LOOKUP+"?"+new URLSearchParams(params).toString());
+      const r=await fetch(API+"?"+new URLSearchParams(params).toString());
       const t=await r.text();
       if(t.trim().startsWith("{")) return JSON.parse(t);
       last=new Error("respuesta no JSON");
@@ -449,28 +457,45 @@ async function gas(params, retries=2){
   throw last||new Error("sin conexión");
 }
 /* calentar el Apps Script al abrir (el primer arranque tarda 1-3 s) */
-fetch(LOOKUP+"?q=").catch(()=>{});
+if(READY) fetch(API+"?action=ping").catch(()=>{});
+/* si la llave de 12 h caducó, se renueva sola con el teléfono + nombre guardados */
+async function renewTok(){
+  try{
+    const j=await api({action:"me", ph:(state.clienta.ph||"").replace(/\D/g,""), nm:state.clienta.fn});
+    if(j && j.ok && j.tok){ state.clienta.tok=j.tok; saveClienta(state.clienta); return true; }
+  }catch(e){}
+  return false;
+}
 
 /* ================== identificación por teléfono ================== */
 const LS_KEY="tn_clienta";
 function saveClienta(c){ state.clienta=c; try{ localStorage.setItem(LS_KEY, JSON.stringify(c)); }catch(e){} }
-function loadClienta(){ try{ const c=JSON.parse(localStorage.getItem(LS_KEY)); return (c&&c.id)?c:null; }catch(e){ return null; } }
+function loadClienta(){ try{ const c=JSON.parse(localStorage.getItem(LS_KEY)); return (c&&c.id&&c.tok)?c:null; }catch(e){ return null; } }
 
 $("loginForm").addEventListener("submit", async e=>{
   e.preventDefault();
   const digits=$("phin").value.replace(/\D/g,"").replace(/^1/,"");
   const msg=$("loginMsg");
+  if(!READY){ msg.textContent="Estamos encendiendo el sistema de la app — abre muy pronto 💛"; return; }
   if(digits.length!==10){ msg.textContent="Escribe tu número completo (10 dígitos)."; return; }
-  msg.textContent="Buscándote en el salón…"; $("loginGo").disabled=true;
+  const nm=$("nmin").value.trim();
+  const step2=!$("nmRow").hidden;
+  if(step2 && !nm){ msg.textContent="Dinos tu nombre para reconocerte 💛"; return; }
+  msg.textContent=step2?"Verificando…":"Buscándote en el salón…"; $("loginGo").disabled=true;
   try{
-    const j=await gas({q:digits});
-    const hit=(j.matches||[]).find(m=>(m.ph||"").replace(/\D/g,"").slice(-10)===digits);
-    if(hit){ saveClienta(hit); enterApp(); }
-    else{
+    const j=await api(step2?{action:"me", ph:digits, nm}:{action:"me", ph:digits});
+    if(j && j.ok && j.tok){
+      saveClienta({id:j.id, fn:j.fn, ln:j.ln, ph:j.ph, em:j.em, tok:j.tok});
+      msg.textContent=""; enterApp();
+    }else if(j && j.ok && j.existe){
+      $("nmRow").hidden=false; $("nmin").focus();
+      msg.textContent="¡Te encontramos! Ahora dinos tu nombre.";
+    }else if(j && j.ok && j.existe===false){
       $("loginForm").hidden=true; $("regForm").hidden=false;
-      $("regForm").dataset.ph=digits; $("rgFn").focus();
+      $("regForm").dataset.ph=digits; $("rgFn").focus(); msg.textContent="";
+    }else{
+      msg.textContent=(j && j.error)||"No se pudo verificar. Intenta otra vez.";
     }
-    msg.textContent="";
   }catch(err){ msg.textContent="No pudimos conectar. Espera unos segundos e intenta otra vez."; }
   $("loginGo").disabled=false;
 });
@@ -479,13 +504,18 @@ $("regBack").addEventListener("click",()=>{ $("regForm").hidden=true; $("loginFo
 $("regForm").addEventListener("submit", async e=>{
   e.preventDefault();
   const fn=$("rgFn").value.trim(), ln=$("rgLn").value.trim(), em=$("rgEm").value.trim();
-  const ph="+1"+$("regForm").dataset.ph, msg=$("regMsg");
+  const ph=$("regForm").dataset.ph, msg=$("regMsg");
   if(!fn){ msg.textContent="Dinos tu nombre 💛"; return; }
   msg.textContent="Creando tu cuenta…"; $("regGo").disabled=true;
   try{
-    const j=await gas({action:"newcontact", fn, ln, ph, em});
-    if(j.ok && j.id){ saveClienta({id:j.id, fn:j.fn||fn, ln:j.ln||ln, ph:j.ph||ph, em:j.em||em}); enterApp(); }
-    else msg.textContent=j.error||"No se pudo crear la cuenta. Intenta otra vez.";
+    const j=await api({action:"new", fn, ln, ph, em});
+    if(j && j.ok && j.tok){
+      saveClienta({id:j.id, fn:j.fn||fn, ln:j.ln||ln, ph:j.ph||ph, em:j.em||em, tok:j.tok});
+      enterApp();
+    }else if(j && j.yaExiste){
+      $("regForm").hidden=true; $("loginForm").hidden=false; $("nmRow").hidden=false;
+      $("loginMsg").textContent="Ya tenemos una ficha con ese número — entra con tu nombre."; $("nmin").focus();
+    }else msg.textContent=(j&&j.error)||"No se pudo crear la cuenta. Intenta otra vez.";
   }catch(err){ msg.textContent="No pudimos conectar. Intenta otra vez."; }
   $("regGo").disabled=false;
 });
@@ -495,33 +525,26 @@ $("logout").addEventListener("click",()=>{
   location.reload();
 });
 
-/* ================== historial (Apps Script v6) ================== */
-async function loadHistorial(){
-  state.historial=undefined;
+/* ================== mis datos (action=mine del backend seguro) ==================
+   Devuelve en UNA llamada: citas próximas, total de visitas y "lo de siempre". */
+async function loadMine(){
+  state.mine=undefined;
+  if(!READY || !state.clienta || !state.clienta.tok){
+    state.mine=null; renderHome(); renderCitas(); renderCard(); return;
+  }
   try{
-    const j=await gas({action:"historial", contactId:state.clienta.id});
-    if(j && j.ok && Array.isArray(j.citas)) state.historial=j.citas;
-    else state.historial=null;              // el script aún no tiene la v6 → funciones básicas igual sirven
-  }catch(e){ state.historial=null; }
+    let j=await api({action:"mine", tok:state.clienta.tok});
+    if(j && j.expirado && await renewTok()) j=await api({action:"mine", tok:state.clienta.tok});
+    state.mine=(j && j.ok)?j:null;
+  }catch(e){ state.mine=null; }
   renderHome(); renderCitas(); renderCard();
 }
-const ST_OK=st=>!["cancelled","noshow","invalid"].includes(st||"");
-function upcoming(){
-  if(!Array.isArray(state.historial)) return [];
-  const now=Date.now();
-  return state.historial.filter(c=>ST_OK(c.st)&&Date.parse(c.s)>now).sort((a,b)=>Date.parse(a.s)-Date.parse(b.s));
-}
-function pastVisits(){
-  if(!Array.isArray(state.historial)) return [];
-  const now=Date.now();
-  return state.historial.filter(c=>ST_OK(c.st)&&Date.parse(c.s)<=now).sort((a,b)=>Date.parse(b.s)-Date.parse(a.s));
-}
+function upcoming(){ return (state.mine && state.mine.citas)||[]; }
 function habitual(){
-  const past=pastVisits(); if(!past.length) return null;
-  const mode=arr=>{ const n={}; let best=null; for(const x of arr){ if(!x) continue; n[x]=(n[x]||0)+1; if(!best||n[x]>n[best]) best=x; } return best; };
-  const svc=svcById(mode(past.map(c=>c.c)));
-  const tech=mode(past.map(c=>c.u));
-  return { svc, tech:(tech&&DATA.staff[tech])?tech:null };
+  if(!state.mine) return null;
+  const svc=svcById(state.mine.usualCal);
+  const tech=(state.mine.usualTec && DATA.staff[state.mine.usualTec])?state.mine.usualTec:null;
+  return svc?{svc,tech}:null;
 }
 function citaLabel(c){
   const d=new Date(Date.parse(c.s));
@@ -550,7 +573,7 @@ $("doneHome").addEventListener("click",()=>{ show("home"); });
 function enterApp(){
   $("vLogin").hidden=true; $("app").hidden=false; $("tabs").hidden=false;
   renderOffers(); renderHome(); show("home");
-  loadHistorial();
+  loadMine();
   buildDays(); renderSvcChips();
 }
 
@@ -560,7 +583,7 @@ function renderHome(){
   $("helloSub").textContent="Qué bueno verte por aquí 💅";
   const nx=$("homeNext"), us=$("homeUsual");
   nx.innerHTML=""; us.innerHTML="";
-  if(state.historial===undefined){
+  if(state.mine===undefined){
     nx.innerHTML=`<div class="card" style="margin-top:16px"><div class="spin"></div></div>`;
     return;
   }
@@ -797,8 +820,12 @@ async function doBook(){
   const end=`${iso}T${String(Math.floor(e/60)).padStart(2,"0")}:${String(e%60).padStart(2,"0")}:00${OFFSET}`;
   $("bbGo").disabled=true; $("bbGo").textContent="Reservando…";
   try{
-    const j=await gas({action:"book", calId:state.services[0].id, userId:uid,
-      contactId:state.clienta.id, start, end, title:svcTitle()}, 0);   // 0 reintentos: jamás arriesgar cita doble
+    let j=await api({action:"book", tok:state.clienta.tok, calId:state.services[0].id,
+      userId:uid, start, end, title:svcTitle()}, 0);   // 0 reintentos: jamás arriesgar cita doble
+    /* llave caducada = el book NO llegó a crearse → renovar y repetir es seguro */
+    if(j && j.expirado && await renewTok())
+      j=await api({action:"book", tok:state.clienta.tok, calId:state.services[0].id,
+        userId:uid, start, end, title:svcTitle()}, 0);
     if(j && j.ok){
       hideBookbar();
       $("doneTxt").innerHTML=`<strong>${esc(svcTitle())}</strong><br>
@@ -807,7 +834,7 @@ async function doBook(){
       show("done");
       state.services=[]; state.tech=null; state.chosenTime=null; renderSvcChips();
       for(const k in slotCache) delete slotCache[k];
-      loadHistorial();
+      loadMine();
     }else{
       $("bbGo").disabled=false; $("bbGo").textContent="Confirmar cita";
       toast((j&&j.error)?`No se pudo: ${j.error}`:"No se pudo crear la cita. Intenta otra vez.");
@@ -816,20 +843,20 @@ async function doBook(){
     /* la respuesta llegó rota, pero la cita PUDO haberse creado — que revise antes de repetir */
     $("bbGo").disabled=false; $("bbGo").textContent="Confirmar cita";
     toast("La conexión se enredó. Mira en «Mis citas» si tu cita quedó creada antes de intentar de nuevo.");
-    loadHistorial();
+    loadMine();
   }
 }
 
 /* ---- mis citas ---- */
 function renderCitas(){
   const box=$("citasBox");
-  if(state.historial===undefined){ box.innerHTML=`<div class="state"><div class="spin"></div>Buscando tus citas…</div>`; return; }
-  if(state.historial===null){
-    box.innerHTML=`<div class="state"><strong>Muy pronto 💛</strong>Aquí verás tus próximas citas y tu historial.
-      Mientras tanto, reserva desde la pestaña «Reservar».</div>`;
+  if(state.mine===undefined){ box.innerHTML=`<div class="state"><div class="spin"></div>Buscando tus citas…</div>`; return; }
+  if(state.mine===null){
+    box.innerHTML=`<div class="state"><strong>No pudimos cargar tus citas</strong>Vuelve a intentarlo en un momento,
+      o reserva desde la pestaña «Reservar». <button class="link" onclick="loadMine()">Reintentar</button></div>`;
     return;
   }
-  const up=upcoming(), past=pastVisits().slice(0,10);
+  const up=upcoming();
   let html="";
   html+=`<h2 class="sec" style="margin-top:6px">Próximas</h2>`;
   if(!up.length) html+=`<div class="state">No tienes citas próximas — ¿reservamos una? 💅</div>`;
@@ -838,21 +865,15 @@ function renderCitas(){
     html+=`<div class="cita-row"><div><div class="w">${esc(L.when)}</div><div class="s">${esc(L.what)}</div></div>
       ${c.id?`<button class="cancel" type="button" data-id="${esc(c.id)}">Cancelar</button>`:""}</div>`;
   }
-  if(past.length){
-    html+=`<h2 class="sec">Visitas pasadas</h2>`;
-    for(const c of past){
-      const L=citaLabel(c);
-      html+=`<div class="cita-row past"><div><div class="w">${esc(L.when)}</div><div class="s">${esc(L.what)}</div></div></div>`;
-    }
-  }
   box.innerHTML=html;
   box.querySelectorAll(".cancel").forEach(b=>b.addEventListener("click",async ()=>{
     if(!confirm("¿Cancelar esta cita?")) return;
     b.disabled=true; b.textContent="Cancelando…";
     try{
-      const j=await gas({action:"cancel", eventId:b.dataset.id});
-      if(j && j.ok){ toast("Cita cancelada. ¡Te esperamos pronto! 💛"); loadHistorial(); }
-      else{ b.disabled=false; b.textContent="Cancelar"; toast("No se pudo cancelar — llama al salón."); }
+      let j=await api({action:"cancel", tok:state.clienta.tok, eventId:b.dataset.id});
+      if(j && j.expirado && await renewTok()) j=await api({action:"cancel", tok:state.clienta.tok, eventId:b.dataset.id});
+      if(j && j.ok){ toast("Cita cancelada. ¡Te esperamos pronto! 💛"); loadMine(); }
+      else{ b.disabled=false; b.textContent="Cancelar"; toast((j&&j.error)||"No se pudo cancelar — llama al salón."); }
     }catch(e){ b.disabled=false; b.textContent="Cancelar"; toast("No pudimos conectar. Intenta otra vez."); }
   }));
 }
@@ -860,12 +881,13 @@ function renderCitas(){
 /* ---- mi tarjeta ---- */
 function renderCard(){
   const box=$("cardBox");
-  if(state.historial===undefined){ box.innerHTML=`<div class="state"><div class="spin"></div>Contando tus visitas…</div>`; return; }
-  if(state.historial===null){
-    box.innerHTML=`<div class="state"><strong>Muy pronto 💛</strong>Aquí se irá llenando tu tarjeta con cada visita.</div>`;
+  if(state.mine===undefined){ box.innerHTML=`<div class="state"><div class="spin"></div>Contando tus visitas…</div>`; return; }
+  if(state.mine===null){
+    box.innerHTML=`<div class="state"><strong>No pudimos cargar tu tarjeta</strong>
+      <button class="link" onclick="loadMine()">Reintentar</button></div>`;
     return;
   }
-  const visits=pastVisits().length;
+  const visits=state.mine.visitas||0;
   const on=visits===0?0:(visits%10===0?10:visits%10);
   let stamps="";
   for(let i=1;i<=10;i++) stamps+=`<div class="stamp ${i<=on?"on":""}">${i<=on?"💅":i}</div>`;
@@ -899,8 +921,9 @@ function paintInstallTip(){
   const g=$("installGo");
   if(g) g.addEventListener("click",async ()=>{ deferredInstall.prompt(); deferredInstall=null; tip.innerHTML=""; });
 }
+if(!READY) $("loginMsg").textContent="🛠 Estamos dando los últimos toques — la app abre muy pronto 💛";
 const saved=loadClienta();
-if(saved){ state.clienta=saved; enterApp(); }
+if(READY && saved){ state.clienta=saved; enterApp(); }
 else addEventListener("load", paintInstallTip);
 </script>
 </body>
